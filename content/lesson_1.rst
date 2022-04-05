@@ -9,44 +9,45 @@ the question of how language give rise to meaning is not fully (at all?) underst
 
 NLP is to a large extent considered an applied field, focused on solving specific tasks 
 related to the extraction of information from text. Some of the common tasks include:
-  - Automatic speech recognition
-  - CCG
-  - Common sense
-  - Constituency parsing
-  - Coreference resolution
-  - Data-to-Text Generation
-  - Dependency parsing
-  - Dialogue
-  - Domain adaptation
-  - Entity linking
-  - Grammatical error correction
-  - Information extraction
-  - Intent Detection and Slot Filling
-  - Language modeling
-  - Lexical normalization
-  - Machine translation
-  - Missing elements
-  - Multi-task learning
-  - Multi-modal
-  - Named entity recognition
-  - Natural language inference
-  - Part-of-speech tagging
-  - Paraphrase Generation
-  - Question answering
-  - Relation prediction
-  - Relationship extraction
-  - Semantic textual similarity
-  - Semantic parsing
-  - Semantic role labeling
-  - Sentiment analysis
-  - Shallow syntax
-  - Simplification
-  - Stance detection
-  - Summarization
-  - Taxonomy learning
-  - Temporal processing
-  - Text classification
-  - Word sense disambiguation
+
+  * Automatic speech recognition
+  * CCG
+  * Common sense
+  * Constituency parsing
+  * Coreference resolution
+  * Data-to-Text Generation
+  * Dependency parsing
+  * Dialogue
+  * Domain adaptation
+  * Entity linking
+  * Grammatical error correction
+  * Information extraction
+  * Intent Detection and Slot Filling
+  * Language modeling
+  * Lexical normalization
+  * Machine translation
+  * Missing elements
+  * Multi-task learning
+  * Multi-modal
+  * Named entity recognition
+  * Natural language inference
+  * Part-of-speech tagging
+  * Paraphrase Generation
+  * Question answering
+  * Relation prediction
+  * Relationship extraction
+  * Semantic textual similarity
+  * Semantic parsing
+  * Semantic role labeling
+  * Sentiment analysis
+  * Shallow syntax
+  * Simplification
+  * Stance detection
+  * Summarization
+  * Taxonomy learning
+  * Temporal processing
+  * Text classification
+  * Word sense disambiguation
 
 
 The field of computational linguistics has long tried to tackle the problem of using 
@@ -113,9 +114,9 @@ meaningful words (e.g. `neural` or `processing`) are *very* uncommon. This leads
 distribution of words which is often referred to as power-law. 
 
 Without going into details about power law distribution, when it comes to statistical models 
-of language is enough to say that the number of occurances of most interesing words is low
- in a corpus. This is something we need to understand to devise statistical methods for 
- learning interesting things abouts words.
+of language is enough to say that the number of occurances of most interesing words is low 
+in a corpus. This is something we need to understand to devise statistical methods for 
+learning interesting things abouts words.
 
 
 Bag of words
@@ -156,9 +157,10 @@ document.
 Each document can now be thought of as a vector of word counts, where most 
 places are 0. We can easily define similarity measures between documents based 
 on these vectors. Some popular similarity metrics are:
-  - Jaccard index (or Tanimoto index): The ratio of the intersection of two sets over the union.
-  - Manhattan distance: The sum of absolute values of the difference between the vectors
-  - Euclidean distance: The square root of the sum of squared differences between the vectors
+
+  * Jaccard index (or Tanimoto index): The ratio of the intersection of two sets over the union.
+  * Manhattan distance: The sum of absolute values of the difference between the vectors
+  * Euclidean distance: The square root of the sum of squared differences between the vectors
 
 
 Factorizing the document-term matrix
@@ -187,7 +189,10 @@ is used rarely.
 While many schemes for deciding on the frequency exists, we'll use a simple one which 
 merely takes the negative logarithm of how many documents a term occurs in over the total number of documents:
 
-$-log \frac{1+n_t}{N}$
+.. math::
+
+  -log \frac{1+n_t}{N}
+
 
 Where $n_t$ is the number of documents the term occurs in and $N$ is the total 
 number of documents. This means that if the term occurs in all documents 

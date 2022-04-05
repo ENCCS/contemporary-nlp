@@ -15,13 +15,14 @@ This is the teaching material for the workshop in NLP.
    :widths: auto
    :delim: ;
 
-   20 min ; :doc:`filename`
+   20 min ; :doc:`lesson_1`
 
 
 .. toctree::
    :maxdepth: 1
    :caption: The lesson
 
+   lesson_1
 
 .. toctree::
    :maxdepth: 1
