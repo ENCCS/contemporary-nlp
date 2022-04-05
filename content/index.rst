@@ -1,14 +1,13 @@
-A lesson in ``sphinx-lesson`` format
+ENCCS Contemporary NLP workshop
 ====================================
 
-
-Intro
+This is the teaching material for the workshop in NLP.
 
 
 
 .. prereq::
 
-   prerequisites
+   This material assumes fluency in python and a basic understanding of linear algebra and probability theory.
 
 
 
