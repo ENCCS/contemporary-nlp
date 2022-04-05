@@ -1,5 +1,6 @@
+#################
 Lesson 1 - theory
-=================
+#################
 
 
 Natural Language Processing (NLP) is a field which studies techniques to automatically 
