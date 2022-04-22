@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 2 - Capturing more of the syntax &mdash; ENCCS Contemporary NLP workshop  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx_lesson.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx_rtd_theme_ext_color_contrast.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/minipres.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Quick Reference" href="../../quick-reference/" />
+    <link rel="prev" title="Lesson 2 - Background" href="../../lesson_2/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../" class="icon icon-home"> ENCCS Contemporary NLP workshop
+            <img src="../../_static/ENCCS.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The lesson</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../lesson_1/">Lesson 1 - Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lesson_1/">Lesson 1 Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lesson_2/">Lesson 2 - Background</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 2 - Capturing more of the syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#huggingface-transformers">Huggingface Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#n-gram-models">N-gram models</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quick-reference/">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/">Instructor’s guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">ENCCS Contemporary NLP workshop</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+      <li>Lesson 2 - Capturing more of the syntax</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ENCCS/contemporary-nlp/blob/main/content/notebooks/lesson_2.ipynb" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-2-capturing-more-of-the-syntax">
+<h1>Lesson 2 - Capturing more of the syntax<a class="headerlink" href="#lesson-2-capturing-more-of-the-syntax" title="Permalink to this headline"></a></h1>
+<p>In the previous lesson we saw how simple bag-of-words representations could be used to find similar documents. While it works somewhat well to find relevant documents, the model we use has a very simple representation of language, where all meaning derived from syntax are lost. We’ll now look at how can use pre-trained neural networks to get representations of text which capture some of this syntax.</p>
+<p>Today, this is most often done by using <em>Transformer</em> neural networks pre-trained with <em>language modelling</em>. Essentially, the pretraining task is framed as learning the joint distribution over text by estimating the factorized distribution. This can be done in many ways (e.g. GPT, BERT, XLNet).</p>
+<p>It has been noted that this pre-training task works well when later fine-tuning on some supervised task. In our case though, we would like to use some representation of the documents for similarity search, without doing any additional fine tuning.</p>
+<p>To do this, we will use <em>sentence BERT</em> (sBERT), a variant of the BERT training procedure which strives to improve performance of the model for semantic representations.</p>
+<section id="huggingface-transformers">
+<h2>Huggingface Transformers<a class="headerlink" href="#huggingface-transformers" title="Permalink to this headline"></a></h2>
+<p>Much of the community surrounding pre-trained language models has centered on a project named Hugginface Transformers. This started as a library of basic Transformer models (in particular including pretrained BERT and GPT models), but has grown to be a substantial platform for pre-trained models.</p>
+<p>Huggingface makes working with these models simple, and hides much of the inner workings behind an easy to use interface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.thingiverse.com/assets/d0/b3/68/63/1e/Gate_Guide_Spacer_v9.stl&quot;</span>
+<span class="n">data_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">data_root</span> <span class="o">/</span> <span class="s1">&#39;sampled_archive.zip&#39;</span>
+<span class="n">data_root</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">ZipPatentCorpus</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">document_archive</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">document_parts</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;abstract&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;claims&#39;</span><span class="p">),</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document_archive</span> <span class="o">=</span> <span class="n">document_archive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document_zf</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document_archive</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document_parts</span> <span class="o">=</span> <span class="n">document_parts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang</span> <span class="o">=</span> <span class="n">lang</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">documents</span>  <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">filename</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_zf</span><span class="o">.</span><span class="n">namelist</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbolic_labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labeled_documents</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">:</span>
+            <span class="n">label</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">symbolic_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labeled_documents</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_codes</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labeled_documents</span><span class="o">.</span><span class="n">keys</span><span class="p">()))}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">label_codes</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbolic_labels</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">load_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document_path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_zf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">document_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">document</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+            <span class="n">document_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">document</span><span class="p">[</span><span class="n">part</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">]</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_parts</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">document_str</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="c1"># Lazily load documents here</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="n">document_paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+            <span class="n">document_str</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">load_document</span><span class="p">(</span><span class="n">document_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">document_path</span> <span class="ow">in</span> <span class="n">document_paths</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
+            <span class="n">document_str</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">load_document</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">document_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_document</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">document_str</span>
+    
+    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">get_symbolic_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbolic_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="k">class</span> <span class="nc">Tokenizer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                 <span class="o">*</span><span class="p">,</span> 
+                 <span class="n">max_vocab_size</span><span class="p">,</span> 
+                 <span class="n">stoplist</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;an&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;be&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">),</span>
+                 <span class="n">wordpattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;[A-Za-z0-9\-\+=&#39;.]*[A-Za-z][A-Za-z0-9\-\+=&#39;.]*&quot;</span>
+                 <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_vocab_size</span> <span class="o">=</span> <span class="n">max_vocab_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stoplist</span> <span class="o">=</span> <span class="n">stoplist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wordpattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">wordpattern</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wordpattern</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())]</span>
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_text</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">term_to_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">term_to_index</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Tokenizer is missing term to index, did you call Tokenizer.fit() or Tokenizer.fit_transform()?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">term_to_index</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">tokenized_text</span> <span class="k">if</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">term_to_index</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoded_text</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">index_to_term</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_to_term</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Tokenizer is missing term to index, did you call Tokenizer.fit() or Tokenizer.fit_transform()?&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">index_to_term</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">encoded_text</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">make_vocab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents_term_frequencies</span><span class="p">):</span>
+        <span class="n">document_occurance_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">document_term_frequency</span> <span class="ow">in</span> <span class="n">documents_term_frequencies</span><span class="p">:</span>
+            <span class="c1"># And a count once for each unique term in a document</span>
+            <span class="n">document_occurance_counts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">document_term_frequency</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> 
+        
+        <span class="k">for</span> <span class="n">stopword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoplist</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">document_occurance_counts</span><span class="p">[</span><span class="n">stopword</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">vocabulary</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">document_occurance_counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_vocab_size</span><span class="p">)</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">term_to_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">term</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocabulary</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_to_term</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">term</span> <span class="k">for</span> <span class="n">term</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">term_to_index</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus</span><span class="p">):</span>
+        <span class="n">documents_term_frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Tokenizing&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_vocab</span><span class="p">(</span><span class="n">documents_term_frequencies</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus</span><span class="p">):</span>
+        <span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Tokenizing&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+        <span class="n">documents_term_frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="k">for</span> <span class="n">tokens</span> <span class="ow">in</span> <span class="n">tokenized_docs</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_vocab</span><span class="p">(</span><span class="n">documents_term_frequencies</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span> <span class="k">for</span> <span class="n">tokenized_text</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Encoding&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">tokenized_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">encoded_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">encoded_text</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocabulary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="k">class</span> <span class="nc">NGramTokenizer</span><span class="p">(</span><span class="n">Tokenizer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                 <span class="o">*</span><span class="p">,</span>
+                 <span class="n">n</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span>
+                 <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus</span><span class="p">):</span>
+        <span class="n">documents_term_frequencies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Tokenizing&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="n">tokenized</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_stop_ngrams</span><span class="p">:</span>
+                <span class="n">tokenized</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokenized</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoplist</span><span class="p">]</span>
+            <span class="n">document_terms</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tokenized</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># note that since we use the n in the slice below, for 2-grams we want this offset to be 1 and so on</span>
+                <span class="n">n_grams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokenized</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenized</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">document_terms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n_grams</span><span class="p">)</span>
+            <span class="n">documents_term_frequencies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document_terms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_vocab</span><span class="p">(</span><span class="n">documents_term_frequencies</span><span class="p">)</span>
+            
+        
+
+    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus</span><span class="p">):</span>
+        <span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">documents_term_frequencies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Tokenizing&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="n">tokenized</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_stop_ngrams</span><span class="p">:</span>
+                <span class="n">tokenized</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokenized</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stoplist</span><span class="p">]</span>
+            <span class="n">document_terms</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tokenized</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># note that since we use the n in the slice below, for 2-grams we want this offset to be 1 and so on</span>
+                <span class="n">n_grams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokenized</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenized</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">document_terms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n_grams</span><span class="p">)</span>
+            <span class="n">documents_term_frequencies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document_terms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_vocab</span><span class="p">(</span><span class="n">documents_term_frequencies</span><span class="p">)</span>
+        
+        <span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Tokenizing&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+        <span class="n">documents_term_frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="k">for</span> <span class="n">tokens</span> <span class="ow">in</span> <span class="n">tokenized_docs</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_vocab</span><span class="p">(</span><span class="n">documents_term_frequencies</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span> <span class="k">for</span> <span class="n">tokenized_text</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Encoding&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">tokenized_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">encoded_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">encoded_text</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocabulary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_corpus</span> <span class="o">=</span> <span class="n">ZipPatentCorpus</span><span class="p">(</span><span class="n">document_archive</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span> <span class="n">document_parts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">max_vocab_size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">tokenized_docs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">text_corpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="n-gram-models">
+<h2>N-gram models<a class="headerlink" href="#n-gram-models" title="Permalink to this headline"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">transformers</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForMaskedLM</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">transformers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None of PyTorch, TensorFlow &gt;= 2.0, or Flax have been found. Models won&#39;t be available and only tokenizers, configuration and file/data utilities can be used.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;transformers&#39; from &#39;F:\\Anaconda\\envs\\enccs-nlp-workshop\\lib\\site-packages\\transformers\\__init__.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;This is an example sentence&quot;</span><span class="p">,</span> <span class="s2">&quot;Each sentence is converted&quot;</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;AI-Growth-Lab/PatentSBERTa&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span>\<span class="n">ipykernel_38868</span>\<span class="mf">1401220064.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;This is an example sentence&quot;</span><span class="p">,</span> <span class="s2">&quot;Each sentence is converted&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;AI-Growth-Lab/PatentSBERTa&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\sentence_transformers\SentenceTransformer.py</span> in <span class="ni">__init__</span><span class="nt">(self, model_name_or_path, modules, device, cache_folder)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span> 
+<span class="g g-Whitespace">     </span><span class="mi">89</span>             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s1">&#39;modules.json&#39;</span><span class="p">)):</span>    <span class="c1">#Load as SentenceTransformer model</span>
+<span class="ne">---&gt; </span><span class="mi">90</span>                 <span class="n">modules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_sbert_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>             <span class="k">else</span><span class="p">:</span>   <span class="c1">#Load with AutoModel</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>                 <span class="n">modules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_auto_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\sentence_transformers\SentenceTransformer.py</span> in <span class="ni">_load_sbert_model</span><span class="nt">(self, model_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">820</span>         <span class="k">for</span> <span class="n">module_config</span> <span class="ow">in</span> <span class="n">modules_config</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">821</span>             <span class="n">module_class</span> <span class="o">=</span> <span class="n">import_from_string</span><span class="p">(</span><span class="n">module_config</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+<span class="ne">--&gt; </span><span class="mi">822</span>             <span class="n">module</span> <span class="o">=</span> <span class="n">module_class</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">module_config</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">823</span>             <span class="n">modules</span><span class="p">[</span><span class="n">module_config</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">module</span>
+<span class="g g-Whitespace">    </span><span class="mi">824</span> 
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\sentence_transformers\models\Transformer.py</span> in <span class="ni">load</span><span class="nt">(input_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sbert_config_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fIn</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span>             <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fIn</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">124</span>         <span class="k">return</span> <span class="n">Transformer</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="n">input_path</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> 
+<span class="g g-Whitespace">    </span><span class="mi">126</span> 
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\sentence_transformers\models\Transformer.py</span> in <span class="ni">__init__</span><span class="nt">(self, model_name_or_path, max_seq_length, model_args, cache_dir, tokenizer_args, do_lower_case, tokenizer_name_or_path)</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> 
+<span class="g g-Whitespace">     </span><span class="mi">28</span>         <span class="n">config</span> <span class="o">=</span> <span class="n">AutoConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="p">,</span> <span class="o">**</span><span class="n">model_args</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="n">cache_dir</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">29</span>         <span class="bp">self</span><span class="o">.</span><span class="n">auto_model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="n">cache_dir</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>         <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">tokenizer_name_or_path</span> <span class="k">if</span> <span class="n">tokenizer_name_or_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">model_name_or_path</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="n">cache_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">tokenizer_args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> 
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\transformers\utils\dummy_pt_objects.py</span> in <span class="ni">from_pretrained</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>     <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>     <span class="k">def</span> <span class="nf">from_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">367</span>         <span class="n">requires_backends</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span> 
+<span class="g g-Whitespace">    </span><span class="mi">369</span> 
+
+<span class="nn">F:\Anaconda\envs\enccs-nlp-workshop\lib\site-packages\transformers\file_utils.py</span> in <span class="ni">requires_backends</span><span class="nt">(obj, backends)</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span>     <span class="n">name</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">BACKENDS_MAPPING</span><span class="p">[</span><span class="n">backend</span><span class="p">][</span><span class="mi">0</span><span class="p">]()</span> <span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">backends</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">569</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">BACKENDS_MAPPING</span><span class="p">[</span><span class="n">backend</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">backends</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span> 
+<span class="g g-Whitespace">    </span><span class="mi">571</span> 
+
+<span class="ne">ImportError</span>: 
+<span class="n">AutoModel</span> <span class="n">requires</span> <span class="n">the</span> <span class="n">PyTorch</span> <span class="n">library</span> <span class="n">but</span> <span class="n">it</span> <span class="n">was</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">environment</span><span class="o">.</span> <span class="n">Checkout</span> <span class="n">the</span> <span class="n">instructions</span> <span class="n">on</span> <span class="n">the</span>
+<span class="n">installation</span> <span class="n">page</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pytorch</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">started</span><span class="o">/</span><span class="n">locally</span><span class="o">/</span> <span class="ow">and</span> <span class="n">follow</span> <span class="n">the</span> <span class="n">ones</span> <span class="n">that</span> <span class="n">match</span> <span class="n">your</span> <span class="n">environment</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../lesson_2/" class="btn btn-neutral float-left" title="Lesson 2 - Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../quick-reference/" class="btn btn-neutral float-right" title="Quick Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ENCCS Contemporary NLP workshop and individual contributors..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

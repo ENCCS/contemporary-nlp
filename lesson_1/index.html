@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 1 - Background &mdash; ENCCS Contemporary NLP workshop  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_lesson.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_rtd_theme_ext_color_contrast.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/minipres.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Lesson 1 Notebook" href="../notebooks/lesson_1/" />
+    <link rel="prev" title="ENCCS Contemporary NLP workshop" href="../" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../" class="icon icon-home"> ENCCS Contemporary NLP workshop
+            <img src="../_static/ENCCS.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The lesson</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 1 - Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#language-representation">Language representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tokenization">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-power-law-curse">The power law curse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bag-of-words">Bag of words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#factorizing-the-document-term-matrix">Factorizing the document-term matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#random-indexing">Random indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-issue-of-frequency">The issue of frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#language-bias">Language bias</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lesson_1/">Lesson 1 Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lesson_2/">Lesson 2 - Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lesson_2/">Lesson 2 - Capturing more of the syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-reference/">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/">Instructor’s guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">ENCCS Contemporary NLP workshop</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home"></a> &raquo;</li>
+      <li>Lesson 1 - Background</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ENCCS/contemporary-nlp/blob/main/content/lesson_1.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lesson-1-background">
+<h1>Lesson 1 - Background<a class="headerlink" href="#lesson-1-background" title="Permalink to this headline"></a></h1>
+<p>Natural Language Processing (NLP) is a field which studies techniques to automatically
+extract meaning from language. In formal languages, the semantics of the language is
+typically defined by construction, while in natural languages as spoken between humans,
+the question of how language give rise to meaning is not fully (at all?) understood.</p>
+<p>NLP is to a large extent considered an applied field, focused on solving specific tasks
+related to the extraction of information from text. Some of the common tasks include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Automatic speech recognition</p></li>
+<li><p>CCG</p></li>
+<li><p>Common sense</p></li>
+<li><p>Constituency parsing</p></li>
+<li><p>Coreference resolution</p></li>
+<li><p>Data-to-Text Generation</p></li>
+<li><p>Dependency parsing</p></li>
+<li><p>Dialogue</p></li>
+<li><p>Domain adaptation</p></li>
+<li><p>Entity linking</p></li>
+<li><p>Grammatical error correction</p></li>
+<li><p>Information extraction</p></li>
+<li><p>Intent Detection and Slot Filling</p></li>
+<li><p>Language modeling</p></li>
+<li><p>Lexical normalization</p></li>
+<li><p>Machine translation</p></li>
+<li><p>Missing elements</p></li>
+<li><p>Multi-task learning</p></li>
+<li><p>Multi-modal</p></li>
+<li><p>Named entity recognition</p></li>
+<li><p>Natural language inference</p></li>
+<li><p>Part-of-speech tagging</p></li>
+<li><p>Paraphrase Generation</p></li>
+<li><p>Question answering</p></li>
+<li><p>Relation prediction</p></li>
+<li><p>Relationship extraction</p></li>
+<li><p>Semantic textual similarity</p></li>
+<li><p>Semantic parsing</p></li>
+<li><p>Semantic role labeling</p></li>
+<li><p>Sentiment analysis</p></li>
+<li><p>Shallow syntax</p></li>
+<li><p>Simplification</p></li>
+<li><p>Stance detection</p></li>
+<li><p>Summarization</p></li>
+<li><p>Taxonomy learning</p></li>
+<li><p>Temporal processing</p></li>
+<li><p>Text classification</p></li>
+<li><p>Word sense disambiguation</p></li>
+</ul>
+</div></blockquote>
+<p>The field of computational linguistics has long tried to tackle the problem of using
+computational methods to extract meaning from text, and many of the techniques used in
+NLP owe their creating to computational linguistics. Traditionally, these tools were
+created by formulating rules for how language should be parsed, and semantics was
+derived from these syntactic structures (e.g. parse trees).</p>
+<p>However, natural language can often be ambiguous which makes designing formal methods
+to parse it’s meaning difficult. This has given rise to statistical methods, which
+instead of explicitly trying define rules for language parsing instead uses data to
+correlate language with some task at hand.</p>
+<p>It’s a hotly debated topic whether statiscial methods can get to the _understanding_ of
+text, but in this workshop we’ll gloss over that and instead focus on the practical
+application of these methods.</p>
+<section id="language-representation">
+<h2>Language representation<a class="headerlink" href="#language-representation" title="Permalink to this headline"></a></h2>
+<p>One recurring theme of this workshop is “how should we represent language?”. Fundamentally,
+in the context of NLP the representation of language is in the form of <strong>text</strong>. While techniques
+for speech recognition can be considered part of NLP, they are typically used to transcribe
+speech into text, after which the standard techniques for dealing with text are used.</p>
+<p>In NLP we often have some body of text we use to train our statistical models,
+and this body of text is referred to as a <em>corpus</em> (from latin, meaning body).
+These corpora might be just text extracted from some written records or it can
+be annotated with task-specific annotations, for example each word might be
+tagged with which part of speech it is or whether it referres to a unique named entity.</p>
+</section>
+<section id="tokenization">
+<h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline"></a></h2>
+<p>Due to historical reasons, much of NLP was developed
+for <em>english</em>, and some of the assumptions which went in to early methods breaks
+for other languages.</p>
+<p>One long standing question of how to go from text to meaning is what the basic
+building blocks should be. The act of splitting a string of characters into
+basic building blocks is referred to as <em>tokenization</em>. Historically the natural
+choice for english was breaking text into words, often by splitting on whitespace
+and punctuation.</p>
+<p>While this kind of works for english, it leads to a number of challenges for other
+languages such as german (where combining multiple words into one long word is common)
+and chinese (where “words” are not separated by whitespace).</p>
+<p>In this workshop we’ll not focus overly much on tokenization, since for contemporary
+NLP is solved in a datadriven fashion. We will however look at how we can use simple
+tokenization of english using whitespace and how this leads to some issues.</p>
+<p>To be less tied to the notion of our tokens being words, we often use <cite>term</cite> instead,
+which denotes the basic semantic units we use in our NLP methods.</p>
+</section>
+<section id="the-power-law-curse">
+<h2>The power law curse<a class="headerlink" href="#the-power-law-curse" title="Permalink to this headline"></a></h2>
+<p>A phenomena which was observed early on when statistical methods where used for
+NLP is that of Zipf’s law. While the phenomena had been observed before, linguist
+George Kinglsey Zipf spent much effort into popularizing it and seeking to understand
+it’s origin. Roughly it was observed that the frequency of words in natural text
+followed a very skewed distribution, where the most frequent word (e.g. <cite>the</cite>)
+stands for a significant fraction of all words in the corpus. Conversely, most semantically
+meaningful words (e.g. <cite>neural</cite> or <cite>processing</cite>) are <em>very</em> uncommon. This leads to a frequency
+distribution of words which is often referred to as power-law.</p>
+<p>Without going into details about power law distribution, when it comes to statistical models
+of language is enough to say that the number of occurances of most interesing words is low
+in a corpus. This is something we need to understand to devise statistical methods for
+learning interesting things abouts words.</p>
+</section>
+<section id="bag-of-words">
+<h2>Bag of words<a class="headerlink" href="#bag-of-words" title="Permalink to this headline"></a></h2>
+<p>Provided we have succeded in breaking our text down into tokens, one question is
+how we could analyze this text.</p>
+<p>In this workshop we’ll mainly focus on the task of semantic similairty, but we can think of
+ways to easily extend this into document classifcation or question answering. If we can
+somehow say that two documents are similar, and we know that one of the documents is
+about <cite>machine learning</cite>, then we can infer that likely the other document is as well.</p>
+<p>One obvious way to do this is to ask whether documents contain the same words. If
+two documents tend to have the same words, then likely they are about the same thing.</p>
+<p>The bag-of-words (BoW) model is a simple way of doing this. In BoW We can think of
+each document as being represented by a set of counters, one
+per word in our vobulary (the set of words we are considering). The counters show us
+how many times each word occur in the document. Since the distribution of terms
+typically follow Zipf’s law, most entries for a document will be 0 (that is, most
+words are not used in a given document).</p>
+<p>If we order these counters in a sequence, we can organize the
+information about all of our documents in a matrix which shows the relationship
+between document and terms, and refer to this matrix as a document-term matrix.</p>
+<p>In this kind of representation of text, we’re discarding all of the syntactical
+information from the text and only keep the words and their frequencies. While
+this might seem overly destructive we’ll see that for many problems it actually
+works quite well.</p>
+<p>Since documents vary in length, the counts of a word will also vary, so we typically
+normalize the counts to instead be the fraction of the words frequency in the document.
+This means that the sum of a document vector is 1, and we can think of the elements
+as containing the probability of getting that term when randomly chosen one from the
+document.</p>
+<p>Each document can now be thought of as a vector of word counts, where most
+places are 0. We can easily define similarity measures between documents based
+on these vectors. Some popular similarity metrics are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Jaccard index (or Tanimoto index): The ratio of the intersection of two sets over the union.</p></li>
+<li><p>Manhattan distance: The sum of absolute values of the difference between the vectors</p></li>
+<li><p>Euclidean distance: The square root of the sum of squared differences between the vectors</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="factorizing-the-document-term-matrix">
+<h2>Factorizing the document-term matrix<a class="headerlink" href="#factorizing-the-document-term-matrix" title="Permalink to this headline"></a></h2>
+</section>
+<section id="random-indexing">
+<h2>Random indexing<a class="headerlink" href="#random-indexing" title="Permalink to this headline"></a></h2>
+<p>The issue of</p>
+</section>
+<section id="the-issue-of-frequency">
+<h2>The issue of frequency<a class="headerlink" href="#the-issue-of-frequency" title="Permalink to this headline"></a></h2>
+<p>One fundamental issue plagues our BoW-model, and that is the problem that some terms
+dominates in the distance. In english, words like <cite>a</cite>, <cite>the</cite>, <cite>and</cite> are so common
+that they will contain the majority of counts for any document, and some differences
+in their usage might contribute most to any similarity between documents.
+Put it in another way, if you were to randomly pick a word from a document,
+it’s highly likely to be a word which tells you nothing of what the document is about.</p>
+<p>One natural way of solving this is to _weigh_ each term differently depending on it’s
+overall frequency, so a word which is very commom (and thus likely to be relatively
+unimportant) gets assigned less weight in the distance calculation than one which
+is used rarely.</p>
+<p>While many schemes for deciding on the frequency exists, we’ll use a simple one which
+merely takes the negative logarithm of how many documents a term occurs in over the total number of documents:</p>
+<div class="math notranslate nohighlight">
+\[-log \frac{1+n_t}{N}\]</div>
+<p>Where $n_t$ is the number of documents the term occurs in and $N$ is the total
+number of documents. This means that if the term occurs in all documents
+(which words like <cite>the</cite>, <cite>and</cite> are likely to do) this weight will be close to
+log(1)=0, while if it occurs in very few documents the weight will high. The 1
+in the numerator is to make sure we don’t end up taking the logarithm of 0.</p>
+</section>
+<section id="language-bias">
+<h2>Language bias<a class="headerlink" href="#language-bias" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="ENCCS Contemporary NLP workshop" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notebooks/lesson_1/" class="btn btn-neutral float-right" title="Lesson 1 Notebook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ENCCS Contemporary NLP workshop and individual contributors..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

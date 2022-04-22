@@ -1,0 +1,101 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import re
+from collections import Counter
+from tqdm import tqdm
+
+class Tokenizer:
+    def __init__(self, 
+                 *, 
+                 max_vocab_size, 
+                 stoplist=('the', 'of', 'a', 'and', 'to', 'in', 'is', 'or', 'an', 'by', 'as', 'be', 'for'),
+                 wordpattern=r"[A-Za-z0-9\-\+='.]*[A-Za-z][A-Za-z0-9\-\+='.]*"
+                 ):
+        self.max_vocab_size = max_vocab_size
+        self.stoplist = stoplist
+        self.wordpattern = re.compile(wordpattern)
+
+    def tokenize(self, text):
+        return [word.strip('.') for word in re.findall(self.wordpattern, text.lower())]
+
+    def encode(self, tokenized_text):
+        try:
+            term_to_index = self.term_to_index
+        except AttributeError:
+            raise RuntimeError("Tokenizer is missing term to index, did you call Tokenizer.fit() or Tokenizer.fit_transform()?")
+        return [term_to_index[term] for term in tokenized_text if term in term_to_index]
+    
+    def decode(self, encoded_text):
+        try:
+            index_to_term = self.index_to_term
+        except AttributeError:
+            raise RuntimeError("Tokenizer is missing term to index, did you call Tokenizer.fit() or Tokenizer.fit_transform()?")
+
+        return [index_to_term[idx] for idx in encoded_text]
+    
+    def make_vocab(self, documents_term_frequencies):
+        document_occurance_counts = Counter()
+        for document_term_frequency in documents_term_frequencies:
+            # And a count once for each unique term in a document
+            document_occurance_counts.update(document_term_frequency.keys()) 
+        
+        for stopword in self.stoplist:
+            del document_occurance_counts[stopword]
+        
+        self.vocabulary = sorted(term for term, count in document_occurance_counts.most_common(self.max_vocab_size) if count > 1)
+        self.term_to_index = {term: i for i, term in enumerate(self.vocabulary)}
+        self.index_to_term = {i: term for term, i in self.term_to_index.items()}
+
+    def fit(self, corpus):
+        documents_term_frequencies = [Counter(self.tokenize(doc)) for doc in tqdm(corpus, desc="Tokenizing", leave=False)]
+        self.make_vocab(documents_term_frequencies)
+
+    def fit_transform(self, corpus):
+        tokenized_docs = [self.tokenize(doc) for doc in tqdm(corpus, desc="Tokenizing", leave=False)]
+        documents_term_frequencies = [Counter(tokens) for tokens in tokenized_docs]
+        self.make_vocab(documents_term_frequencies)
+        return [self.encode(tokenized_text) for tokenized_text in tqdm(tokenized_docs, desc="Encoding", leave=False)]
+
+    def transform(self, text):
+        tokenized_text = self.tokenize(text)
+        encoded_text = self.encode(tokenized_text)
+        return encoded_text
+    
+    def __len__(self):
+        return len(self.vocabulary)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [4][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mre[39;00m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mcollections[39;00m [38;5;28;01mimport[39;00m Counter
+[0;32m----> 3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtqdm[39;00m [38;5;28;01mimport[39;00m tqdm
+[1;32m      5[0m [38;5;28;01mclass[39;00m [38;5;21;01mTokenizer[39;00m:
+[1;32m      6[0m     [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, 
+[1;32m      7[0m                  [38;5;241m*[39m, 
+[1;32m      8[0m                  max_vocab_size, 
+[1;32m      9[0m                  stoplist[38;5;241m=[39m([38;5;124m'[39m[38;5;124mthe[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mof[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124ma[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mand[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mto[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124min[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mis[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mor[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124man[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mby[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mas[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mbe[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mfor[39m[38;5;124m'[39m),
+[1;32m     10[0m                  wordpattern[38;5;241m=[39m[38;5;124mr[39m[38;5;124m"[39m[38;5;124m[A-Za-z0-9[39m[38;5;124m\[39m[38;5;124m-[39m[38;5;124m\[39m[38;5;124m+=[39m[38;5;124m'[39m[38;5;124m.]*[A-Za-z][A-Za-z0-9[39m[38;5;124m\[39m[38;5;124m-[39m[38;5;124m\[39m[38;5;124m+=[39m[38;5;124m'[39m[38;5;124m.]*[39m[38;5;124m"[39m
+[1;32m     11[0m                  ):
+
+[0;31mModuleNotFoundError[0m: No module named 'tqdm'
+ModuleNotFoundError: No module named 'tqdm'
+

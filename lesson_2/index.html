@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 2 - Background &mdash; ENCCS Contemporary NLP workshop  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_lesson.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx_rtd_theme_ext_color_contrast.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/minipres.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Lesson 2 - Capturing more of the syntax" href="../notebooks/lesson_2/" />
+    <link rel="prev" title="Lesson 1 Notebook" href="../notebooks/lesson_1/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../" class="icon icon-home"> ENCCS Contemporary NLP workshop
+            <img src="../_static/ENCCS.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The lesson</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../lesson_1/">Lesson 1 - Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lesson_1/">Lesson 1 Notebook</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 2 - Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-sparsity">Data sparsity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neural-networks-for-contextual-representations">Neural Networks for contextual representations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lesson_2/">Lesson 2 - Capturing more of the syntax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-reference/">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/">Instructor’s guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">ENCCS Contemporary NLP workshop</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home"></a> &raquo;</li>
+      <li>Lesson 2 - Background</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ENCCS/contemporary-nlp/blob/main/content/lesson_2.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lesson-2-background">
+<h1>Lesson 2 - Background<a class="headerlink" href="#lesson-2-background" title="Permalink to this headline"></a></h1>
+<p>In the previous lesson we saw how simple term frequencies could be used to create representations of text.
+While these worked to some extent, they are fundamentally limited in how they can represent language. In particular,
+the meaning a word has in its context is lost.</p>
+<p>This has long been an issue for bag-of-words models, and one way of trying to introduce more structure is a so called n-gram model.
+Instead of only treating a document as a bag of its individual terms, we can add subsequences of terms. If we for example also include
+all ordered pairs of terms in a document, we would be using a <em>bigram</em> model. If we instead use subsequences of 3 words, we would have
+a trigram model and so on. We generally refer to this representation as an <em>n-gram</em> representation, where the n is the length of the subsequences.</p>
+<section id="data-sparsity">
+<h2>Data sparsity<a class="headerlink" href="#data-sparsity" title="Permalink to this headline"></a></h2>
+<p>One fundamental issue of n-gram models is that the <em>support</em> for each n-gram decreases very rapidly as we increase the length of the subsequences. This means that if we go up to say 5-grams, almost all such 5-sequence terms will be unique.</p>
+<p>…</p>
+</section>
+<section id="neural-networks-for-contextual-representations">
+<h2>Neural Networks for contextual representations<a class="headerlink" href="#neural-networks-for-contextual-representations" title="Permalink to this headline"></a></h2>
+<p>While computational linguistics has tried to define rule based methods of tackling the issues of words in context, often through semantic parsing, this has proven to be brittle.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../notebooks/lesson_1/" class="btn btn-neutral float-left" title="Lesson 1 Notebook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notebooks/lesson_2/" class="btn btn-neutral float-right" title="Lesson 2 - Capturing more of the syntax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ENCCS Contemporary NLP workshop and individual contributors..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
