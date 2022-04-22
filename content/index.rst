@@ -24,7 +24,8 @@ This is the teaching material for the workshop in NLP.
 
    lesson_1
    notebooks/lesson_1.ipynb
-
+   lesson_2
+   notebooks/lesson_2.ipynb
 
 .. toctree::
    :maxdepth: 1

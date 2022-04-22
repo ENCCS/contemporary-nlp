@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "A lesson in ``sphinx-lesson`` format"
+project = "ENCCS Contemporary NLP workshop"
 copyright = "2022, ENCCS Contemporary NLP workshop and individual contributors."
 author = "ENCCS Contemporary NLP workshop and individual contributors."
 github_user = "ENCCS"

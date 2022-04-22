@@ -1,5 +1,5 @@
 #################
-Lesson 1 - theory
+Lesson 1 - Background
 #################
 
 
